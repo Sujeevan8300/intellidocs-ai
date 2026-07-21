@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { CategoryForm } from '../CategoryForm/CategoryForm'
 import { useCategoryForm } from '../../hooks/useCategoryForm'
 import type { CategoryFormValues } from '../../validators/category.schema'
+import { CategoryStatus } from '../../types/Category'
 import type { Category } from '../../types/Category'
 
 interface CategoryModalProps {
@@ -33,7 +34,7 @@ export function CategoryModal({
         name: initialData?.name ?? '',
         description: initialData?.description ?? '',
         parentId: initialData?.parentId ?? null,
-        status: initialData?.status ?? ('ACTIVE' as const),
+        status: initialData?.status ?? CategoryStatus.ACTIVE,
       })
     }
   }, [open, initialData, form])

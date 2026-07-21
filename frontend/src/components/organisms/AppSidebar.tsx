@@ -12,7 +12,9 @@ const ROUTE_MAP: Record<string, string> = {
   dashboard: '/',
   chat: '/assistant',
   search: '/search',
+  documents: '/documents',
   categories: '/categories',
+  users: '/users',
 }
 
 export function AppSidebar() {
@@ -20,7 +22,9 @@ export function AppSidebar() {
   const location = useLocation()
 
   const selectedKey = (() => {
+    if (location.pathname.startsWith('/users')) return 'users'
     if (location.pathname.startsWith('/categories')) return 'categories'
+    if (location.pathname.startsWith('/documents')) return 'documents'
     if (location.pathname === '/assistant') return 'chat'
     if (location.pathname === '/search') return 'search'
     return 'dashboard'

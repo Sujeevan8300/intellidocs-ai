@@ -4,6 +4,8 @@ import { DashboardPage } from '../features/dashboard/pages/DashboardPage'
 import { ChatPage } from '../features/ai-chat'
 import { SemanticSearchPage } from '../features/semantic-search'
 import { CategoryListPage, CategoryDetailsPage } from '../features/categories'
+import { DocumentsPage, DocumentDetailsPage, UploadPage } from '../features/documents'
+import { UsersPage, UserDetailsPage, UserProfilePage } from '../features/users'
 
 export function AppRoutes() {
   return (
@@ -15,10 +17,15 @@ export function AppRoutes() {
           <Route path="/search" element={<SemanticSearchPage />} />
           <Route path="/categories" element={<CategoryListPage />} />
           <Route path="/categories/:id" element={<CategoryDetailsPage />} />
+          <Route path="/documents" element={<DocumentsPage />} />
+          <Route path="/documents/upload" element={<UploadPage />} />
+          <Route path="/documents/:id" element={<DocumentDetailsPage />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/users/profile" element={<UserProfilePage />} />
+          <Route path="/users/:id" element={<UserDetailsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AppLayout>
     </BrowserRouter>
   )
 }
-

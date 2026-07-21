@@ -12,8 +12,8 @@ export const categorySchema = z.object({
     .optional()
     .or(z.literal('')),
   parentId: z.number().optional().nullable(),
-  status: z.nativeEnum(CategoryStatus, {
-    errorMap: () => ({ message: 'Please select a status' }),
+  status: z.enum([CategoryStatus.ACTIVE, CategoryStatus.INACTIVE], {
+    error: 'Please select a status',
   }),
 })
 

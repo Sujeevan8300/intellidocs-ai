@@ -1,0 +1,46 @@
+import { ProcessingStatus } from '../types/ProcessingStatus'
+import type { UploadFile } from '../types/Upload'
+
+export const mockUploadQueue: UploadFile[] = [
+  {
+    id: 'upload-1',
+    file: null,
+    name: 'Annual Report 2026.pdf',
+    category: 'Finance',
+    description: 'Annual financial report for fiscal year 2026',
+    tags: ['finance', 'report'],
+    fileType: 'PDF',
+    fileSize: 4500000,
+    status: 'complete',
+    progress: 100,
+    documentId: 51,
+    processingStatus: ProcessingStatus.READY,
+  },
+  {
+    id: 'upload-2',
+    file: null,
+    name: 'Security Audit Results.pdf',
+    category: 'Security',
+    description: 'Results from Q1 security audit',
+    tags: ['security', 'audit'],
+    fileType: 'PDF',
+    fileSize: 2300000,
+    status: 'processing',
+    progress: 100,
+    documentId: 52,
+    processingStatus: ProcessingStatus.PROCESSING,
+  },
+  {
+    id: 'upload-3',
+    file: null,
+    name: 'New API Endpoints.md',
+    category: 'API Documentation',
+    description: 'Documentation for new REST API endpoints',
+    tags: ['api', 'documentation'],
+    fileType: 'MD',
+    fileSize: 125000,
+    status: 'error',
+    progress: 65,
+    error: 'File processing failed: invalid encoding',
+  },
+]
