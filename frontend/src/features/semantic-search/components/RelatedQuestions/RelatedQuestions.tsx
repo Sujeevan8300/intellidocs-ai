@@ -1,0 +1,1 @@
+export function RelatedQuestions({ questions, onSelect }: { questions: string[]; onSelect: (value: string) => void }) { return <section className="related-questions"><h3>You may also ask</h3>{questions.map((question) => <button key={question} onClick={() => onSelect(question)}>{question}</button>)}</section> }

@@ -1,0 +1,4 @@
+import { CloseCircleFilled, SearchOutlined } from '@ant-design/icons'
+import { Button, Input } from 'antd'
+import type { KeyboardEvent } from 'react'
+export function SearchBar({ value, loading, onChange, onSearch }: { value: string; loading: boolean; onChange: (value: string) => void; onSearch: () => void }) { const keyDown = (event: KeyboardEvent<HTMLInputElement>) => { if (event.key === 'Enter') onSearch() }; return <div className="semantic-search-bar"><Input size="large" prefix={<SearchOutlined />} suffix={value && <button className="clear-search" aria-label="Clear search" onClick={() => onChange('')}><CloseCircleFilled /></button>} value={value} onChange={(event) => onChange(event.target.value)} onKeyDown={keyDown} placeholder="Ask anything about company policies..." aria-label="Search company knowledge"/><Button type="primary" size="large" icon={<SearchOutlined />} loading={loading} onClick={onSearch}>Search</Button></div> }

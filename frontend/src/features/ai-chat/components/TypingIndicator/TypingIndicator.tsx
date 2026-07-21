@@ -1,0 +1,1 @@
+export function TypingIndicator() { return <div className="chat-typing" role="status"><span className="ai-mini">i</span><div><span className="typing-dots"><i/><i/><i/></span><strong>IntelliDocs AI is thinking</strong></div></div> }

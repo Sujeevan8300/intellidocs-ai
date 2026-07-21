@@ -1,0 +1,1 @@
+export function SimilarityScore({ score }: { score: number }) { const tone = score >= 90 ? 'high' : score >= 70 ? 'medium' : 'low'; return <span className={`similarity-score ${tone}`}><i />{score}% relevant</span> }

@@ -1,0 +1,2 @@
+import { ClockCircleOutlined, DeleteOutlined } from '@ant-design/icons'
+export function SearchHistory({ entries, onSelect, onClear }: { entries: string[]; onSelect: (entry: string) => void; onClear: () => void }) { if (!entries.length) return null; return <section className="search-history"><div><h3>Recent searches</h3><button onClick={onClear} aria-label="Clear search history"><DeleteOutlined /> Clear</button></div>{entries.map((entry) => <button key={entry} onClick={() => onSelect(entry)}><ClockCircleOutlined /> {entry}</button>)}</section> }

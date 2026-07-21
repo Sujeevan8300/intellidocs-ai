@@ -1,0 +1,1 @@
+export interface SearchResult { id: string; title: string; content: string; documentName: string; category: string; fileType: 'PDF' | 'DOCX' | 'TXT'; pageNumber: number; similarityScore: number; createdDate: string; updatedDate: string }

@@ -1,0 +1,4 @@
+import { Empty, Skeleton } from 'antd'
+import type { SearchResult } from '../../types/SearchResult'
+import { SearchResultCard } from '../SearchResultCard/SearchResultCard'
+export function SearchResultList({ results, loading, onPreview }: { results: SearchResult[]; loading: boolean; onPreview: (result: SearchResult) => void }) { if (loading) return <div className="search-loading"><span>AI is searching your knowledge base…</span>{[1,2,3].map((id) => <div className="search-skeleton" key={id}><Skeleton active paragraph={{ rows: 3 }} /></div>)}</div>; if (!results.length) return <Empty description="No relevant documents found. Try changing your question." className="no-results" />; return <div className="search-result-list">{results.map((result) => <SearchResultCard key={result.id} result={result} onPreview={onPreview} />)}</div> }

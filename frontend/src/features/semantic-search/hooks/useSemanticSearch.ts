@@ -1,0 +1,5 @@
+import { useCallback } from 'react'
+import { useAppDispatch, useAppSelector } from '../../../hooks/store'
+import { mockSearchService } from '../api/mockSearch.service'
+import { addHistory, setError, setLoading, setQuery, setResults } from '../slices/searchSlice'
+export function useSemanticSearch() { const dispatch = useAppDispatch(); const state = useAppSelector((root) => root.semanticSearch); const search = useCallback(async (value?: string) => { const query = (value ?? state.query).trim(); if (!query || state.loading) return; dispatch(setQuery(query)); dispatch(setLoading(true)); dispatch(setError(null)); try { const response = await mockSearchService.search(query, state.filters); dispatch(setResults(response)); dispatch(addHistory(query)) } catch { dispatch(setError('Unable to complete search. Please try again.')) } finally { dispatch(setLoading(false)) } }, [dispatch, state.filters, state.loading, state.query]); return { ...state, search, setQuery: (value: string) => dispatch(setQuery(value)) } }
