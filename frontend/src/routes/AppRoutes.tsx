@@ -6,6 +6,7 @@ import { SemanticSearchPage } from '../features/semantic-search'
 import { CategoryListPage, CategoryDetailsPage } from '../features/categories'
 import { DocumentsPage, DocumentDetailsPage, UploadPage } from '../features/documents'
 import { UsersPage, UserDetailsPage, UserProfilePage } from '../features/users'
+import { AnalyticsDashboardPage } from '../features/analytics'
 
 export function AppRoutes() {
   return (
@@ -13,6 +14,7 @@ export function AppRoutes() {
       <AppLayout>
         <Routes>
           <Route path="/" element={<DashboardPage />} />
+          <Route path="/analytics" element={<AnalyticsDashboardPage />} />
           <Route path="/assistant" element={<ChatPage />} />
           <Route path="/search" element={<SemanticSearchPage />} />
           <Route path="/categories" element={<CategoryListPage />} />

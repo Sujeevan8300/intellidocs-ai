@@ -10,6 +10,7 @@ const items: MenuProps['items'] = [
 
 const ROUTE_MAP: Record<string, string> = {
   dashboard: '/',
+  analytics: '/analytics',
   chat: '/assistant',
   search: '/search',
   documents: '/documents',
@@ -22,6 +23,7 @@ export function AppSidebar() {
   const location = useLocation()
 
   const selectedKey = (() => {
+    if (location.pathname.startsWith('/analytics')) return 'analytics'
     if (location.pathname.startsWith('/users')) return 'users'
     if (location.pathname.startsWith('/categories')) return 'categories'
     if (location.pathname.startsWith('/documents')) return 'documents'
