@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dropdown, Button, notification, type MenuProps } from 'antd';
 import { DownloadOutlined, FilePdfOutlined, FileExcelOutlined, FileTextOutlined } from '@ant-design/icons';
+import styles from '../../styles/analytics.module.css';
 
 interface ExportButtonProps {
   onExport: (format: 'pdf' | 'excel' | 'csv') => Promise<unknown>;
@@ -33,27 +34,32 @@ export const ExportButton: React.FC<ExportButtonProps> = ({ onExport, exporting 
     {
       key: 'pdf',
       label: 'Export as PDF',
-      icon: <FilePdfOutlined style={{ color: '#ff4d4f' }} />,
+      icon: <FilePdfOutlined style={{ color: '#ef4444' }} />,
       onClick: () => handleExport('pdf'),
     },
     {
       key: 'excel',
-      label: 'Export as Excel (.xlsx)',
-      icon: <FileExcelOutlined style={{ color: '#52c41a' }} />,
+      label: 'Export as Excel',
+      icon: <FileExcelOutlined style={{ color: '#22c55e' }} />,
       onClick: () => handleExport('excel'),
     },
     {
       key: 'csv',
       label: 'Export as CSV',
-      icon: <FileTextOutlined style={{ color: '#1677ff' }} />,
+      icon: <FileTextOutlined style={{ color: '#6366f1' }} />,
       onClick: () => handleExport('csv'),
     },
   ];
 
   return (
     <Dropdown menu={{ items }} placement="bottomRight">
-      <Button type="primary" icon={<DownloadOutlined />} loading={exporting}>
-        Export Report
+      <Button
+        className={styles.exportBtn}
+        type="primary"
+        icon={<DownloadOutlined />}
+        loading={exporting}
+      >
+        Export
       </Button>
     </Dropdown>
   );

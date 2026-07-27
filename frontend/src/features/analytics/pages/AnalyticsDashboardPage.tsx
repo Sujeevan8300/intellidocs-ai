@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Typography, Space, Button, notification } from 'antd';
+import { Button, notification } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import { useAnalytics } from '../hooks/useAnalytics';
@@ -16,8 +16,7 @@ import { AnalyticsFiltersBar } from '../components/AnalyticsFilters/AnalyticsFil
 import { ExportButton } from '../components/ExportButton/ExportButton';
 import { EmptyState } from '../components/EmptyState/EmptyState';
 import { ChartModal } from '../components/ChartModal';
-
-const { Title, Text } = Typography;
+import styles from '../styles/analytics.module.css';
 
 export const AnalyticsDashboardPage: React.FC = () => {
   const {
@@ -47,29 +46,19 @@ export const AnalyticsDashboardPage: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px 32px', background: '#f5f7fa', minHeight: '100vh' }}>
-      {/* Header Bar */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          marginBottom: 20,
-        }}
-      >
-        <div>
-          <Title level={2} style={{ margin: 0, fontWeight: 700, color: '#141414' }}>
-            Analytics Dashboard
-          </Title>
-          <Text type="secondary" style={{ fontSize: 13 }}>
+    <div className={styles.page}>
+      {/* Header */}
+      <div className={styles.header}>
+        <div className={styles.headerLeft}>
+          <h1 className={styles.headerTitle}>Analytics Dashboard</h1>
+          <span className={styles.headerSubtitle}>
             Real-time RAG platform insights, user search activity & AI processing metrics
-            {lastRefreshedAt && ` • Updated ${dayjs(lastRefreshedAt).format('HH:mm:ss')}`}
-          </Text>
+            {lastRefreshedAt && <> · Updated {dayjs(lastRefreshedAt).format('HH:mm:ss')}</>}
+          </span>
         </div>
-
-        <Space size="middle" style={{ marginTop: 8 }}>
+        <div className={styles.headerActions}>
           <Button
+            className={styles.refreshBtn}
             icon={<ReloadOutlined spin={refreshing} />}
             onClick={handleRefresh}
             loading={refreshing}
@@ -77,10 +66,10 @@ export const AnalyticsDashboardPage: React.FC = () => {
             Refresh
           </Button>
           <ExportButton onExport={exportData} exporting={exporting} />
-        </Space>
+        </div>
       </div>
 
-      {/* Filter Options Bar */}
+      {/* Filters */}
       <AnalyticsFiltersBar
         filters={filters}
         onChange={updateFilters}
@@ -91,80 +80,66 @@ export const AnalyticsDashboardPage: React.FC = () => {
       {/* Empty State */}
       {!loading && !charts && <EmptyState onRefresh={handleRefresh} />}
 
-      {/* Main Grid Content */}
+      {/* Dashboard Content */}
       {charts && (
-        <Space direction="vertical" size="large" style={{ width: '100%' }}>
-          {/* KPI Row */}
-          <KPISection kpis={kpis} loading={loading} />
+        <>
+          {/* KPIs */}
+          <div className={styles.section}>
+            <KPISection kpis={kpis} loading={loading} />
+          </div>
 
           {/* AI Usage & User Activity */}
-          <Row gutter={[16, 16]}>
-            <Col xs={24} lg={12}>
-              <AIUsageChart
-                data={charts.aiUsageTrend}
-                onExpand={toggleExpandChart}
-                loading={loading}
-              />
-            </Col>
-            <Col xs={24} lg={12}>
-              <UserActivityChart
-                data={charts.userActivityTrend}
-                onExpand={toggleExpandChart}
-                loading={loading}
-              />
-            </Col>
-          </Row>
+          <div className={styles.chartGrid + ' ' + styles.section}>
+            <AIUsageChart
+              data={charts.aiUsageTrend}
+              onExpand={toggleExpandChart}
+              loading={loading}
+            />
+            <UserActivityChart
+              data={charts.userActivityTrend}
+              onExpand={toggleExpandChart}
+              loading={loading}
+            />
+          </div>
 
           {/* Document Analytics & Semantic Search */}
-          <Row gutter={[16, 16]}>
-            <Col xs={24} lg={12}>
-              <DocumentAnalyticsChart
-                uploadTrend={charts.documentUploadTrend}
-                documentTypes={charts.documentTypes}
-                onExpand={toggleExpandChart}
-                loading={loading}
-              />
-            </Col>
-            <Col xs={24} lg={12}>
-              <SearchAnalyticsChart
-                topQueries={charts.topSearchQueries}
-                onExpand={toggleExpandChart}
-                loading={loading}
-              />
-            </Col>
-          </Row>
+          <div className={styles.chartGrid + ' ' + styles.section}>
+            <DocumentAnalyticsChart
+              uploadTrend={charts.documentUploadTrend}
+              documentTypes={charts.documentTypes}
+              onExpand={toggleExpandChart}
+              loading={loading}
+            />
+            <SearchAnalyticsChart
+              topQueries={charts.topSearchQueries}
+              onExpand={toggleExpandChart}
+              loading={loading}
+            />
+          </div>
 
           {/* Category Distribution & Processing Pipeline */}
-          <Row gutter={[16, 16]}>
-            <Col xs={24} lg={12}>
-              <CategoryAnalyticsChart
-                categories={charts.categoryDistribution}
-                onExpand={toggleExpandChart}
-                loading={loading}
-              />
-            </Col>
-            <Col xs={24} lg={12}>
-              <ProcessingStatusChart
-                pipeline={charts.processingPipeline}
-                onExpand={toggleExpandChart}
-                loading={loading}
-              />
-            </Col>
-          </Row>
+          <div className={styles.chartGrid + ' ' + styles.section}>
+            <CategoryAnalyticsChart
+              categories={charts.categoryDistribution}
+              onExpand={toggleExpandChart}
+              loading={loading}
+            />
+            <ProcessingStatusChart
+              pipeline={charts.processingPipeline}
+              onExpand={toggleExpandChart}
+              loading={loading}
+            />
+          </div>
 
-          {/* Storage Breakdown & System Timeline */}
-          <Row gutter={[16, 16]}>
-            <Col xs={24} lg={12}>
-              <StorageChart storage={charts.storage} onExpand={toggleExpandChart} loading={loading} />
-            </Col>
-            <Col xs={24} lg={12}>
-              <TimelineCard events={timeline} loading={loading} />
-            </Col>
-          </Row>
-        </Space>
+          {/* Storage & Timeline */}
+          <div className={styles.chartGrid + ' ' + styles.sectionLast}>
+            <StorageChart storage={charts.storage} onExpand={toggleExpandChart} loading={loading} />
+            <TimelineCard events={timeline} loading={loading} />
+          </div>
+        </>
       )}
 
-      {/* Full screen modal for chart expansion */}
+      {/* Full-screen modal */}
       <ChartModal
         expandedChartId={expandedChartId}
         charts={charts}

@@ -8,6 +8,7 @@ import { CategoryAnalyticsChart } from './CategoryAnalyticsChart/CategoryAnalyti
 import { ProcessingStatusChart } from './ProcessingStatusChart/ProcessingStatusChart';
 import { StorageChart } from './StorageChart/StorageChart';
 import type { ChartDataSets } from '../types/analytics.types';
+import styles from '../styles/analytics.module.css';
 
 interface ChartModalProps {
   expandedChartId: string | null;
@@ -51,9 +52,10 @@ export const ChartModal: React.FC<ChartModalProps> = ({ expandedChartId, charts,
       footer={null}
       width="85vw"
       style={{ top: 40 }}
+      styles={{ body: { padding: '16px 24px' } }}
       destroyOnClose
     >
-      <div style={{ height: '70vh', width: '100%', padding: '16px 0' }}>{renderExpandedChart()}</div>
+      <div className={styles.modalContent}>{renderExpandedChart()}</div>
     </Modal>
   );
 };

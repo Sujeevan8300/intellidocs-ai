@@ -1,7 +1,7 @@
 import React from 'react';
-import { Row, Col, Skeleton } from 'antd';
 import type { KPIItem } from '../../types/analytics.types';
 import { KPICard } from '../KPICard/KPICard';
+import styles from '../../styles/analytics.module.css';
 
 interface KPISectionProps {
   kpis: KPIItem[];
@@ -11,23 +11,19 @@ interface KPISectionProps {
 export const KPISection: React.FC<KPISectionProps> = ({ kpis, loading = false }) => {
   if (loading) {
     return (
-      <Row gutter={[16, 16]}>
+      <div className={styles.kpiSkeleton}>
         {Array.from({ length: 8 }).map((_, idx) => (
-          <Col xs={24} sm={12} md={6} lg={3} key={idx}>
-            <Skeleton active paragraph={{ rows: 1 }} />
-          </Col>
+          <div className={styles.kpiSkeletonCard} key={idx} />
         ))}
-      </Row>
+      </div>
     );
   }
 
   return (
-    <Row gutter={[16, 16]}>
+    <div className={styles.kpiGrid}>
       {kpis.map((kpi) => (
-        <Col xs={24} sm={12} md={6} lg={6} xl={3} key={kpi.id}>
-          <KPICard kpi={kpi} loading={loading} />
-        </Col>
+        <KPICard key={kpi.id} kpi={kpi} />
       ))}
-    </Row>
+    </div>
   );
 };

@@ -1,8 +1,7 @@
 import React from 'react';
-import { Card, Typography, Space, Tooltip, Button } from 'antd';
+import { Tooltip, Button } from 'antd';
 import { ExpandOutlined, InfoCircleOutlined } from '@ant-design/icons';
-
-const { Text } = Typography;
+import styles from '../../styles/analytics.module.css';
 
 interface ChartCardProps {
   id: string;
@@ -26,47 +25,41 @@ export const ChartCard: React.FC<ChartCardProps> = ({
   loading = false,
 }) => {
   return (
-    <Card
-      loading={loading}
-      style={{
-        borderRadius: 8,
-        boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-        height: '100%',
-      }}
-      title={
-        <Space align="center">
-          <Text strong style={{ fontSize: 15 }}>
-            {title}
-          </Text>
+    <div className={styles.chartCard}>
+      <div className={styles.chartCardHeader}>
+        <div className={styles.chartCardHeaderLeft}>
+          <span className={styles.chartCardTitle}>{title}</span>
+          {subtitle && <span className={styles.chartCardSubtitle}>{subtitle}</span>}
+        </div>
+        <div className={styles.chartCardActions}>
           {tooltip && (
             <Tooltip title={tooltip}>
-              <InfoCircleOutlined style={{ fontSize: 13, color: '#bfbfbf' }} />
+              <InfoCircleOutlined style={{ fontSize: 14, color: '#94a3b8', marginRight: 4 }} />
             </Tooltip>
           )}
-        </Space>
-      }
-      extra={
-        <Space size="small">
           {extraActions}
           {onExpand && (
             <Tooltip title="Expand Full Screen">
               <Button
                 type="text"
                 size="small"
-                icon={<ExpandOutlined style={{ color: '#595959' }} />}
+                icon={<ExpandOutlined style={{ color: '#94a3b8', fontSize: 14 }} />}
                 onClick={() => onExpand(id)}
+                style={{ borderRadius: 6 }}
               />
             </Tooltip>
           )}
-        </Space>
-      }
-    >
-      {subtitle && (
-        <Text type="secondary" style={{ display: 'block', marginBottom: 12, fontSize: 12 }}>
-          {subtitle}
-        </Text>
-      )}
-      <div style={{ width: '100%', height: 280 }}>{children}</div>
-    </Card>
+        </div>
+      </div>
+      <div className={styles.chartCardBody}>
+        {loading ? (
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#94a3b8', fontSize: 13 }}>
+            Loading...
+          </div>
+        ) : (
+          <div className={styles.chartContainer}>{children}</div>
+        )}
+      </div>
+    </div>
   );
 };

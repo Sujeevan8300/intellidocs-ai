@@ -1,0 +1,589 @@
+/* ═══════════════════════════════════════════════════════
+   DASHBOARD MODULE
+   ═══════════════════════════════════════════════════════ */
+
+/* Page Layout */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Welcome Section */
+.welcomeRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.eyebrow {
+  font-size: 10px;
+  color: #8b899c;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.welcomeHeading {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  color: #222137;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.welcomeHeading span {
+  color: #f0b43a;
+  font-size: 23px;
+}
+
+.subtle {
+  color: #858398;
+  margin: 8px 0 0;
+  font-size: 13px;
+}
+
+.welcomeRow .ant-btn {
+  height: 40px;
+  padding: 0 16px;
+  box-shadow: none;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* Metric Grid */
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Dashboard Grid (usage + health) */
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: 1.58fr 1fr;
+  gap: 19px;
+}
+
+/* Lower Grid (documents + activity) */
+.lowerGrid {
+  display: grid;
+  grid-template-columns: 1.58fr 1fr;
+  gap: 19px;
+}
+
+/* Panel (shared card wrapper) */
+.panel {
+  border: 1px solid #ebeaf0;
+  border-radius: 11px;
+  box-shadow: none;
+}
+
+.panel :global(.ant-card-head) {
+  min-height: 72px;
+  padding: 0 20px;
+  border-bottom: 1px solid #f0eff4;
+}
+
+.panel :global(.ant-card-head-title) {
+  padding: 16px 0 13px;
+}
+
+.panel h2 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+}
+
+.panel :global(.ant-card-head-title) span {
+  display: block;
+  margin-top: 3px;
+  color: #9693a5;
+  font-size: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+}
+
+.panel :global(.ant-card-extra) {
+  padding: 0;
+}
+
+/* Period Button */
+.periodButton {
+  background: #fff;
+  border: 1px solid #e5e3eb;
+  border-radius: 6px;
+  color: #66637a;
+  padding: 5px 8px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.periodButton .anticon {
+  transform: rotate(90deg);
+  margin-left: 6px;
+  font-size: 8px;
+}
+
+/* Usage Panel */
+.usagePanel :global(.ant-card-body) {
+  padding: 18px 20px 14px;
+}
+
+.usageTotal {
+  display: flex;
+  align-items: baseline;
+  gap: 11px;
+}
+
+.usageTotal strong {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 23px;
+  letter-spacing: -1px;
+}
+
+.usageTotal span {
+  color: #8f8c9d;
+  font-size: 10px;
+}
+
+.usageTotal b {
+  color: #23946a;
+  font-weight: 700;
+}
+
+/* Usage Chart */
+.usageChart {
+  height: 171px;
+  margin-top: 10px;
+  display: flex;
+}
+
+.chartY {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #aaa8b7;
+  font-size: 9px;
+  padding: 2px 8px 24px 0;
+}
+
+.chartCanvas {
+  position: relative;
+  flex: 1;
+}
+
+.chartCanvas svg {
+  position: absolute;
+  inset: 0 0 24px;
+  height: calc(100% - 24px);
+  width: 100%;
+  overflow: visible;
+}
+
+.chartGrid {
+  position: absolute;
+  inset: 0 0 24px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(25% - 1px),
+    #f0eff4 calc(25% - 1px),
+    #f0eff4 25%
+  );
+}
+
+.chartX {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #aaa8b7;
+}
+
+/* Health Panel */
+.healthPanel :global(.ant-card-body) {
+  padding: 17px 20px 16px;
+}
+
+.healthScore {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 13px;
+}
+
+.healthScore :global(.ant-progress-text) {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.healthScore :global(.ant-progress-text) b {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 19px;
+  letter-spacing: -0.8px;
+}
+
+.healthScore :global(.ant-progress-text) span {
+  color: #9693a5;
+  font-size: 9px;
+}
+
+.healthList {
+  border-top: 1px solid #f0eff4;
+}
+
+.healthList div {
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f2f6;
+  color: #646176;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.healthList strong {
+  margin-left: auto;
+  font-size: 10px;
+}
+
+.healthDot {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: #32b283;
+  flex-shrink: 0;
+}
+
+/* View Link */
+.viewLink {
+  color: #6255d6;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.healthPanel .viewLink {
+  display: block;
+  text-align: center;
+  margin-top: 13px;
+}
+
+.viewLink .anticon {
+  font-size: 9px;
+  margin-left: 4px;
+}
+
+/* Documents Panel */
+.documentsPanel :global(.ant-card-body) {
+  padding: 0 10px 7px;
+}
+
+.documentsPanel :global(.ant-table) {
+  font-size: 11px;
+}
+
+.documentsPanel :global(.ant-table-thead) > tr > th {
+  color: #a09dac;
+  font-size: 9px;
+  font-weight: 700;
+  background: transparent;
+  padding: 11px 10px 7px;
+  border-bottom: 0;
+}
+
+.documentsPanel :global(.ant-table-tbody) > tr > td {
+  padding: 9px 10px;
+  color: #777487;
+  border-bottom: 1px solid #f3f2f6;
+}
+
+.documentName {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.documentName > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.documentName strong {
+  color: #49465c;
+  font-size: 11px;
+}
+
+.documentName span {
+  color: #aaa7b4;
+  font-size: 9px;
+}
+
+.fileIcon {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 31px;
+  border-radius: 5px;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.statusTag {
+  border: 0;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 19px;
+  padding: 0 7px;
+  border-radius: 4px;
+  margin: 0;
+}
+
+/* Activity Panel */
+.activityPanel :global(.ant-card-body) {
+  padding: 10px 20px 18px;
+}
+
+.activityList {
+  display: flex;
+  flex-direction: column;
+}
+
+.activity {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  align-items: center;
+  border-bottom: 1px solid #f3f2f6;
+}
+
+.activity:last-child {
+  border-bottom: 0;
+}
+
+.activityIcon {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.activityIcon_upload {
+  color: #6558dd;
+  background: #eeecff;
+}
+
+.activityIcon_chat {
+  color: #2782c7;
+  background: #eaf6ff;
+}
+
+.activityIcon_edit {
+  color: #299c74;
+  background: #eaf9f2;
+}
+
+.activityIcon_user {
+  color: #da8a3c;
+  background: #fff3e5;
+}
+
+.activity > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.activity strong {
+  font-size: 10.5px;
+  color: #555267;
+  font-weight: 700;
+}
+
+.activity span {
+  color: #a19eae;
+  font-size: 9.5px;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Tip Banner */
+.tip {
+  margin-top: 11px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px;
+  border-radius: 8px;
+  background: #f2f0ff;
+  color: #6658e4;
+}
+
+.tip > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.tip strong {
+  color: #5144c5;
+  font-size: 10px;
+}
+
+.tip span {
+  color: #827bca;
+  font-size: 9px;
+  margin-top: 2px;
+}
+
+.tip > .anticon:last-child {
+  font-size: 10px;
+}
+
+/* Error State */
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 64px 24px;
+  background: #fff;
+  border: 1px solid #ebeaf0;
+  border-radius: 12px;
+  gap: 12px;
+}
+
+.errorState p {
+  font-size: 14px;
+  color: #9693a5;
+  margin: 0;
+}
+
+/* Skeleton Loading */
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skeletonWelcome {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.skeletonMetrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.skeletonMetricCard {
+  background: #fff;
+  border: 1px solid #ebeaf0;
+  border-radius: 11px;
+  padding: 17px 19px;
+  min-height: 165px;
+}
+
+.skeletonMetricTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skeletonPanels {
+  display: grid;
+  grid-template-columns: 1.58fr 1fr;
+  gap: 19px;
+}
+
+.skeletonPanel {
+  background: #fff;
+  border: 1px solid #ebeaf0;
+  border-radius: 11px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════ */
+
+@media (max-width: 1200px) {
+  .metricGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skeletonMetrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboardGrid,
+  .lowerGrid,
+  .skeletonPanels {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcomeRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .welcomeRow .ant-btn {
+    font-size: 0;
+    padding: 0 12px;
+  }
+
+  .welcomeRow .ant-btn .anticon {
+    font-size: 15px;
+  }
+
+  .metricGrid {
+    gap: 11px;
+  }
+
+  .skeletonMetrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .metricGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .skeletonMetrics {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboardGrid,
+  .lowerGrid,
+  .skeletonPanels {
+    grid-template-columns: 1fr;
+  }
+}
