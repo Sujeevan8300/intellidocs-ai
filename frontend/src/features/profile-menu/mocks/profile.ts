@@ -1,0 +1,1 @@
+export const MOCK_PROFILE_DELAY_MS = 300

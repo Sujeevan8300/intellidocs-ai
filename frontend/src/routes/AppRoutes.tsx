@@ -7,6 +7,7 @@ import { CategoryListPage, CategoryDetailsPage } from '../features/categories'
 import { DocumentsPage, DocumentDetailsPage, UploadPage } from '../features/documents'
 import { UsersPage, UserDetailsPage, UserProfilePage } from '../features/users'
 import { AnalyticsDashboardPage } from '../features/analytics'
+import { AccountSettingsPage, PreferencesPage, ChangePasswordPage, HelpPage } from '../features/settings'
 
 export function AppRoutes() {
   return (
@@ -25,6 +26,10 @@ export function AppRoutes() {
           <Route path="/users" element={<UsersPage />} />
           <Route path="/users/profile" element={<UserProfilePage />} />
           <Route path="/users/:id" element={<UserDetailsPage />} />
+          <Route path="/settings/account" element={<AccountSettingsPage />} />
+          <Route path="/settings/preferences" element={<PreferencesPage />} />
+          <Route path="/settings/change-password" element={<ChangePasswordPage />} />
+          <Route path="/help" element={<HelpPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AppLayout>

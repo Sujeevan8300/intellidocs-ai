@@ -1,0 +1,148 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.pageHeaderLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pageTitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  color: #222137;
+  margin: 0;
+}
+
+.pageSubtitle {
+  color: #8b899c;
+  font-size: 13px;
+  margin: 0;
+}
+
+.sectionCard {
+  border-radius: 12px;
+  border: 1px solid #ebeaf0;
+}
+
+.sectionCard :global(.ant-card-head) {
+  border-bottom: 1px solid #f0eff4;
+  min-height: 48px;
+}
+
+.sectionCard :global(.ant-card-head-title) {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222137;
+}
+
+.sectionCard :global(.ant-card-body) {
+  padding: 24px;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formItem :global(.ant-form-item-label) > label {
+  font-weight: 500;
+  color: #43415a;
+  font-size: 13px;
+}
+
+.helpGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.helpCard {
+  border-radius: 12px;
+  border: 1px solid #ebeaf0;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.helpCard:hover {
+  border-color: #c7d2fe;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.08);
+}
+
+.helpCard :global(.ant-card-body) {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px;
+}
+
+.helpIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #6366f1;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.helpCardTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222137;
+  margin: 0 0 4px;
+}
+
+.helpCardDesc {
+  font-size: 12px;
+  color: #8b899c;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.faqItem {
+  border-bottom: 1px solid #f0eff4;
+}
+
+.faqItem:last-child {
+  border-bottom: none;
+}
+
+.faqQuestion {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222137;
+}
+
+.faqAnswer {
+  font-size: 13px;
+  color: #6b6880;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .pageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .helpGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -7,6 +7,7 @@ import documentReducer from '../features/documents/slices/documentSlice'
 import userReducer from '../features/users/slices/userSlice'
 import analyticsReducer from '../features/analytics/slices/analyticsSlice'
 import dashboardReducer from '../features/dashboard/slices/dashboardSlice'
+import profileReducer from '../features/profile-menu/slices/profileSlice'
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     users: userReducer,
     analytics: analyticsReducer,
     dashboard: dashboardReducer,
+    profile: profileReducer,
   },
 })
 export type RootState = ReturnType<typeof store.getState>

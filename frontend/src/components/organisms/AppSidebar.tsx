@@ -50,8 +50,8 @@ export function AppSidebar() {
         className="sidebar-menu"
       />
       <div className="sidebar-bottom">
-        <button className="bottom-link"><SettingOutlined /> Settings</button>
-        <button className="bottom-link"><UserOutlined /> Help & support</button>
+        <button className="bottom-link" onClick={() => navigate('/settings/account')}><SettingOutlined /> Settings</button>
+        <button className="bottom-link" onClick={() => navigate('/help')}><UserOutlined /> Help & support</button>
         <div className="storage">
           <div className="storage__labels"><span>Storage used</span><strong>68%</strong></div>
           <div className="storage__track"><i /></div>
