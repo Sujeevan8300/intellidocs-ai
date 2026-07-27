@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { DashboardData, AnalyticsFilters, KPIItem } from '../types/analytics.types';
+import type { DashboardData, AnalyticsFilters, KPIItem } from '../types/analytics.types';
 
 /**
  * Generates realistic enterprise analytics datasets for IntelliDocs AI.

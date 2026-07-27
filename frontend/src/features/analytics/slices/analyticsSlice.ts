@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { DashboardData, AnalyticsFilters } from '../types/analytics.types';
+import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
+import type { DashboardData, AnalyticsFilters } from '../types/analytics.types';
 import { analyticsService } from '../api';
 
 export interface AnalyticsState {

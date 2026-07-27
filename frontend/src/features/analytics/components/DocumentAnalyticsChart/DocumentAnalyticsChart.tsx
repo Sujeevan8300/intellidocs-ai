@@ -13,7 +13,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import { TimeSeriesPoint, DistributionPoint } from '../../types/analytics.types';
+import type { TimeSeriesPoint, DistributionPoint } from '../../types/analytics.types';
 import { ChartCard } from '../ChartCard/ChartCard';
 
 interface DocumentAnalyticsChartProps {
@@ -40,7 +40,7 @@ export const DocumentAnalyticsChart: React.FC<DocumentAnalyticsChartProps> = ({
       onExpand={onExpand}
       loading={loading}
     >
-      <Row height="100%">
+      <Row style={{ height: '100%' }}>
         <Col span={14}>
           <ResponsiveContainer width="100%" height={230}>
             <BarChart data={uploadTrend} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
@@ -70,7 +70,7 @@ export const DocumentAnalyticsChart: React.FC<DocumentAnalyticsChartProps> = ({
                   <Cell key={`cell-${index}`} fill={entry.color || COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip formatter={(value: number) => [`${value} files`, 'Count']} />
+              <Tooltip formatter={(value: any) => [`${value} files`, 'Count']} />
               <Legend wrapperStyle={{ fontSize: 10 }} layout="vertical" align="right" verticalAlign="middle" />
             </PieChart>
           </ResponsiveContainer>

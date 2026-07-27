@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Typography, Space, Button, notification, Card } from 'antd';
+import { Row, Col, Typography, Space, Button, notification } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import { useAnalytics } from '../hooks/useAnalytics';
@@ -28,7 +28,6 @@ export const AnalyticsDashboardPage: React.FC = () => {
     loading,
     refreshing,
     exporting,
-    error,
     expandedChartId,
     lastRefreshedAt,
     refreshDashboard,

@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../../store';
+import type { AppDispatch, RootState } from '../../../store';
 import {
   fetchAnalyticsDashboard,
   refreshAnalyticsDashboard,
@@ -9,7 +9,7 @@ import {
   resetFilters,
   setExpandedChartId,
 } from '../slices/analyticsSlice';
-import { AnalyticsFilters } from '../types/analytics.types';
+import type { AnalyticsFilters } from '../types/analytics.types';
 
 export function useAnalytics() {
   const dispatch = useDispatch<AppDispatch>();

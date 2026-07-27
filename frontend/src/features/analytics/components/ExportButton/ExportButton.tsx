@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, Button, notification, MenuProps } from 'antd';
+import { Dropdown, Button, notification, type MenuProps } from 'antd';
 import { DownloadOutlined, FilePdfOutlined, FileExcelOutlined, FileTextOutlined } from '@ant-design/icons';
 
 interface ExportButtonProps {

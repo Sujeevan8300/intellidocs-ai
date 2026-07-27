@@ -1,5 +1,5 @@
-import { IAnalyticsService } from './analytics.service.interface';
-import { DashboardData, AnalyticsFilters, KPIItem } from '../types/analytics.types';
+import type { IAnalyticsService } from './analytics.service.interface';
+import type { DashboardData, AnalyticsFilters, KPIItem } from '../types/analytics.types';
 import { generateMockDashboardData } from '../mocks/mockAnalyticsData';
 
 export class MockAnalyticsService implements IAnalyticsService {

@@ -1,4 +1,4 @@
-import { DateRangePreset } from '../types/analytics.types';
+import type { DateRangePreset } from '../types/analytics.types';
 
 export const DATE_RANGE_PRESETS: DateRangePreset[] = [
   { label: 'Today', value: 'today' },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
-import { DistributionPoint } from '../../types/analytics.types';
+import type { DistributionPoint } from '../../types/analytics.types';
 import { ChartCard } from '../ChartCard/ChartCard';
 
 interface CategoryAnalyticsChartProps {
@@ -33,13 +33,13 @@ export const CategoryAnalyticsChart: React.FC<CategoryAnalyticsChartProps> = ({
             cy="50%"
             outerRadius={90}
             dataKey="value"
-            label={({ name, percentage }) => `${name} (${percentage}%)`}
+            label={(entry: any) => `${entry.name} (${entry.percentage ?? 0}%)`}
           >
             {categories.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.color || DEFAULT_COLORS[index % DEFAULT_COLORS.length]} />
             ))}
           </Pie>
-          <Tooltip formatter={(value: number) => [`${value} files`, 'Documents']} />
+          <Tooltip formatter={(value: any) => [`${value} files`, 'Documents']} />
           <Legend wrapperStyle={{ fontSize: 11 }} />
         </PieChart>
       </ResponsiveContainer>

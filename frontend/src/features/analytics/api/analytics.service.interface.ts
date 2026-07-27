@@ -1,4 +1,4 @@
-import { DashboardData, AnalyticsFilters, KPIItem } from '../types/analytics.types';
+import type { DashboardData, AnalyticsFilters, KPIItem } from '../types/analytics.types';
 
 export interface IAnalyticsService {
   getDashboard(filters?: AnalyticsFilters): Promise<DashboardData>;

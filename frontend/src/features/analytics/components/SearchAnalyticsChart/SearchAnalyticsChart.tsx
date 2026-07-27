@@ -1,5 +1,4 @@
 import React from 'react';
-import { Row, Col } from 'antd';
 import {
   ResponsiveContainer,
   BarChart,
@@ -9,7 +8,7 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts';
-import { HorizontalBarPoint } from '../../types/analytics.types';
+import type { HorizontalBarPoint } from '../../types/analytics.types';
 import { ChartCard } from '../ChartCard/ChartCard';
 
 interface SearchAnalyticsChartProps {
@@ -48,7 +47,7 @@ export const SearchAnalyticsChart: React.FC<SearchAnalyticsChartProps> = ({
             tickFormatter={(val: string) => (val.length > 22 ? `${val.substring(0, 22)}...` : val)}
           />
           <Tooltip
-            formatter={(value: number, name: string) => [
+            formatter={(value: any, name: any) => [
               name === 'count' ? `${value} searches` : `${value} ms`,
               name === 'count' ? 'Frequency' : 'Avg Latency',
             ]}

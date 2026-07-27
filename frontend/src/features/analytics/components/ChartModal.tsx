@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Typography } from 'antd';
+import { Modal } from 'antd';
 import { AIUsageChart } from './AIUsageChart/AIUsageChart';
 import { UserActivityChart } from './UserActivityChart/UserActivityChart';
 import { DocumentAnalyticsChart } from './DocumentAnalyticsChart/DocumentAnalyticsChart';
@@ -7,9 +7,7 @@ import { SearchAnalyticsChart } from './SearchAnalyticsChart/SearchAnalyticsChar
 import { CategoryAnalyticsChart } from './CategoryAnalyticsChart/CategoryAnalyticsChart';
 import { ProcessingStatusChart } from './ProcessingStatusChart/ProcessingStatusChart';
 import { StorageChart } from './StorageChart/StorageChart';
-import { ChartDataSets } from '../types/analytics.types';
-
-const { Title } = Typography;
+import type { ChartDataSets } from '../types/analytics.types';
 
 interface ChartModalProps {
   expandedChartId: string | null;

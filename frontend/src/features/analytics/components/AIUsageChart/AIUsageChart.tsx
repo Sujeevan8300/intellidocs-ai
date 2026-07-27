@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import { TimeSeriesPoint } from '../../types/analytics.types';
+import type { TimeSeriesPoint } from '../../types/analytics.types';
 import { ChartCard } from '../ChartCard/ChartCard';
 
 interface AIUsageChartProps {

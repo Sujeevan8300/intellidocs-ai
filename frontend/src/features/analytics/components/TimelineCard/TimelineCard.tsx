@@ -1,14 +1,7 @@
 import React from 'react';
 import { Card, Timeline, Typography, Tag, Space } from 'antd';
-import {
-  FileTextOutlined,
-  RobotOutlined,
-  UserOutlined,
-  SearchOutlined,
-  CheckCircleOutlined,
-  WarningOutlined,
-} from '@ant-design/icons';
-import { TimelineEvent } from '../../types/analytics.types';
+import { CheckCircleOutlined, WarningOutlined } from '@ant-design/icons';
+import type { TimelineEvent } from '../../types/analytics.types';
 
 const { Text } = Typography;
 
@@ -16,13 +9,6 @@ interface TimelineCardProps {
   events: TimelineEvent[];
   loading?: boolean;
 }
-
-const CATEGORY_ICONS: Record<string, React.ReactNode> = {
-  DOCUMENT: <FileTextOutlined style={{ color: '#1677ff' }} />,
-  AI: <RobotOutlined style={{ color: '#722ed1' }} />,
-  USER: <UserOutlined style={{ color: '#52c41a' }} />,
-  SEARCH: <SearchOutlined style={{ color: '#13c2c2' }} />,
-};
 
 export const TimelineCard: React.FC<TimelineCardProps> = ({ events, loading }) => {
   return (

@@ -13,7 +13,7 @@ import {
   FallOutlined,
   InfoCircleOutlined,
 } from '@ant-design/icons';
-import { KPIItem } from '../../types/analytics.types';
+import type { KPIItem } from '../../types/analytics.types';
 
 const { Text, Title } = Typography;
 

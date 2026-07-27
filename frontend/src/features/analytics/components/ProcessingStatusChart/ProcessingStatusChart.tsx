@@ -9,7 +9,7 @@ import {
   Tooltip,
   Cell,
 } from 'recharts';
-import { QueueProcessingPoint } from '../../types/analytics.types';
+import type { QueueProcessingPoint } from '../../types/analytics.types';
 import { ChartCard } from '../ChartCard/ChartCard';
 
 interface ProcessingStatusChartProps {
@@ -50,7 +50,7 @@ export const ProcessingStatusChart: React.FC<ProcessingStatusChartProps> = ({
             textAnchor="end"
           />
           <YAxis tick={{ fontSize: 11 }} />
-          <Tooltip formatter={(val: number) => [`${val} items`, 'Count']} />
+          <Tooltip formatter={(val: any) => [`${val} items`, 'Count']} />
           <Bar dataKey="count" name="Queue Count" radius={[4, 4, 0, 0]}>
             {pipeline.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={STATUS_COLORS[entry.status] || '#1677ff'} />

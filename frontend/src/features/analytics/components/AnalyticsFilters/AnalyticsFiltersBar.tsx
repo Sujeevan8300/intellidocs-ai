@@ -1,8 +1,8 @@
 import React from 'react';
 import { Space, Select, DatePicker, Button } from 'antd';
-import { ReloadOutlined, FilterOutlined } from '@ant-design/icons';
+import { ReloadOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
-import { AnalyticsFilters } from '../../types/analytics.types';
+import type { AnalyticsFilters } from '../../types/analytics.types';
 import {
   DATE_RANGE_PRESETS,
   DEPARTMENT_OPTIONS,

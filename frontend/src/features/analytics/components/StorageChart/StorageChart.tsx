@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Progress, Typography } from 'antd';
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
-import { StorageBreakdown } from '../../types/analytics.types';
+import type { StorageBreakdown } from '../../types/analytics.types';
 import { ChartCard } from '../ChartCard/ChartCard';
 
 const { Text } = Typography;
@@ -24,7 +24,7 @@ export const StorageChart: React.FC<StorageChartProps> = ({ storage, onExpand, l
       onExpand={onExpand}
       loading={loading}
     >
-      <Row height="100%" align="middle">
+      <Row style={{ height: '100%' }} align="middle">
         <Col span={10} style={{ textAlign: 'center' }}>
           <Progress
             type="dashboard"
@@ -55,7 +55,7 @@ export const StorageChart: React.FC<StorageChartProps> = ({ storage, onExpand, l
                   <Cell key={`cell-${index}`} fill={entry.color || '#1677ff'} />
                 ))}
               </Pie>
-              <Tooltip formatter={(val: number) => [`${val} GB`, 'Space']} />
+              <Tooltip formatter={(val: any) => [`${val} GB`, 'Space']} />
             </PieChart>
           </ResponsiveContainer>
         </Col>

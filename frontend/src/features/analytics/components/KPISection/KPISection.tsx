@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Skeleton } from 'antd';
-import { KPIItem } from '../../types/analytics.types';
+import type { KPIItem } from '../../types/analytics.types';
 import { KPICard } from '../KPICard/KPICard';
 
 interface KPISectionProps {
