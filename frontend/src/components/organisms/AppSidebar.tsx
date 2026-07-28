@@ -1,26 +1,47 @@
-import { AppstoreOutlined, BarChartOutlined, BookOutlined, FileTextOutlined, FolderOpenOutlined, SettingOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons'
-import { Menu } from 'antd'
-import type { MenuProps } from 'antd'
+import { useState, useEffect } from 'react'
+import { BarChartOutlined, DashboardOutlined, FileTextOutlined, LeftOutlined, QuestionCircleOutlined, RightOutlined, RobotOutlined, SearchOutlined, SettingOutlined, TagsOutlined, TeamOutlined } from '@ant-design/icons'
+import { Avatar, Tooltip } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
-const items: MenuProps['items'] = [
-  { key: 'workspace', type: 'group', label: 'WORKSPACE', children: [{ key: 'dashboard', icon: <AppstoreOutlined />, label: 'Overview' }, { key: 'chat', icon: <BookOutlined />, label: 'AI Assistant' }, { key: 'search', icon: <FolderOpenOutlined />, label: 'Semantic Search' }] },
-  { key: 'knowledge', type: 'group', label: 'KNOWLEDGE', children: [{ key: 'documents', icon: <FileTextOutlined />, label: 'Documents' }, { key: 'categories', icon: <FolderOpenOutlined />, label: 'Categories' }] },
-  { key: 'management', type: 'group', label: 'MANAGEMENT', children: [{ key: 'users', icon: <TeamOutlined />, label: 'Users' }, { key: 'analytics', icon: <BarChartOutlined />, label: 'Analytics' }] },
+import { useSidebar } from './SidebarContext'
+
+const NAV_SECTIONS = [
+  {
+    label: 'Main',
+    items: [
+      { key: 'dashboard', icon: <DashboardOutlined />, label: 'Overview', route: '/' },
+      { key: 'chat', icon: <RobotOutlined />, label: 'AI Assistant', route: '/assistant' },
+      { key: 'search', icon: <SearchOutlined />, label: 'Semantic Search', route: '/search' },
+    ],
+  },
+  {
+    label: 'Knowledge',
+    items: [
+      { key: 'documents', icon: <FileTextOutlined />, label: 'Documents', route: '/documents' },
+      { key: 'categories', icon: <TagsOutlined />, label: 'Categories', route: '/categories' },
+    ],
+  },
+  {
+    label: 'Team',
+    items: [
+      { key: 'users', icon: <TeamOutlined />, label: 'Users', route: '/users' },
+      { key: 'analytics', icon: <BarChartOutlined />, label: 'Analytics', route: '/analytics' },
+    ],
+  },
 ]
 
-const ROUTE_MAP: Record<string, string> = {
-  dashboard: '/',
-  analytics: '/analytics',
-  chat: '/assistant',
-  search: '/search',
-  documents: '/documents',
-  categories: '/categories',
-  users: '/users',
-}
+const COLLAPSED_KEY = 'sidebar-collapsed'
 
 export function AppSidebar() {
   const navigate = useNavigate()
   const location = useLocation()
+  const { mobileOpen, closeMobile } = useSidebar()
+  const [collapsed, setCollapsed] = useState(() => {
+    try { return localStorage.getItem(COLLAPSED_KEY) === 'true' } catch { return false }
+  })
+
+  useEffect(() => {
+    try { localStorage.setItem(COLLAPSED_KEY, String(collapsed)) } catch { /* noop */ }
+  }, [collapsed])
 
   const selectedKey = (() => {
     if (location.pathname.startsWith('/analytics')) return 'analytics'
@@ -32,32 +53,91 @@ export function AppSidebar() {
     return 'dashboard'
   })()
 
+  const handleNav = (route: string) => {
+    navigate(route)
+    closeMobile()
+  }
+
   return (
-    <aside className="app-sidebar">
-      <div className="brand">
-        <span className="brand__mark">i</span>
-        <span>IntelliDocs</span>
-        <span className="brand__ai">AI</span>
-      </div>
-      <Menu
-        mode="inline"
-        selectedKeys={[selectedKey]}
-        onClick={({ key }) => {
-          const route = ROUTE_MAP[key]
-          if (route) navigate(route)
-        }}
-        items={items}
-        className="sidebar-menu"
-      />
-      <div className="sidebar-bottom">
-        <button className="bottom-link" onClick={() => navigate('/settings')}><SettingOutlined /> Settings</button>
-        <button className="bottom-link" onClick={() => navigate('/help')}><UserOutlined /> Help & support</button>
-        <div className="storage">
-          <div className="storage__labels"><span>Storage used</span><strong>68%</strong></div>
-          <div className="storage__track"><i /></div>
-          <span>6.8 GB of 10 GB</span>
+    <>
+      {/* Mobile backdrop */}
+      {mobileOpen && <div className="sidebar-backdrop" onClick={closeMobile} />}
+
+      <aside className={[
+        'app-sidebar',
+        collapsed ? 'app-sidebar--collapsed' : '',
+        mobileOpen ? 'app-sidebar--mobile-open' : '',
+      ].filter(Boolean).join(' ')}>
+        {/* Brand */}
+        <div className="sb-brand">
+          <span className="sb-brand__logo">i</span>
+          {!collapsed && <span className="sb-brand__text">IntelliDocs<span className="sb-brand__ai">AI</span></span>}
         </div>
-      </div>
-    </aside>
+
+        {/* Nav */}
+        <nav className="sb-nav">
+          {NAV_SECTIONS.map((section) => (
+            <div key={section.label} className="sb-section">
+              {!collapsed && <span className="sb-section__label">{section.label}</span>}
+              {collapsed && <div className="sb-section__divider" />}
+              {section.items.map((item) => (
+                <Tooltip
+                  key={item.key}
+                  title={collapsed ? item.label : ''}
+                  placement="right"
+                  arrow={false}
+                  overlayInnerStyle={{ borderRadius: 6, fontSize: 12 }}
+                >
+                  <button
+                    className={`sb-nav__item${selectedKey === item.key ? ' sb-nav__item--active' : ''}`}
+                    onClick={() => handleNav(item.route)}
+                  >
+                    <span className="sb-nav__icon">{item.icon}</span>
+                    {!collapsed && <span className="sb-nav__label">{item.label}</span>}
+                  </button>
+                </Tooltip>
+              ))}
+            </div>
+          ))}
+        </nav>
+
+        {/* Footer */}
+        <div className="sb-footer">
+          <Tooltip title={collapsed ? 'Settings' : ''} placement="right" arrow={false} overlayInnerStyle={{ borderRadius: 6, fontSize: 12 }}>
+            <button className="sb-footer__item" onClick={() => handleNav('/settings')}>
+              <span className="sb-nav__icon"><SettingOutlined /></span>
+              {!collapsed && <span className="sb-nav__label">Settings</span>}
+            </button>
+          </Tooltip>
+          <Tooltip title={collapsed ? 'Help & Support' : ''} placement="right" arrow={false} overlayInnerStyle={{ borderRadius: 6, fontSize: 12 }}>
+            <button className="sb-footer__item" onClick={() => handleNav('/help')}>
+              <span className="sb-nav__icon"><QuestionCircleOutlined /></span>
+              {!collapsed && <span className="sb-nav__label">Help & Support</span>}
+            </button>
+          </Tooltip>
+
+          <Tooltip title={collapsed ? 'Alex Morgan — Admin' : ''} placement="right" arrow={false} overlayInnerStyle={{ borderRadius: 6, fontSize: 12 }}>
+            <button className="sb-footer__user" onClick={() => handleNav('/users/profile')}>
+              <Avatar size={30} className="sb-user__avatar">AM</Avatar>
+              {!collapsed && (
+                <div className="sb-user__info">
+                  <span className="sb-user__name">Alex Morgan</span>
+                  <span className="sb-user__role">Admin</span>
+                </div>
+              )}
+            </button>
+          </Tooltip>
+
+          {/* Collapse toggle */}
+          <button
+            className="sb-collapse"
+            onClick={() => setCollapsed(c => !c)}
+            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          >
+            {collapsed ? <RightOutlined /> : <LeftOutlined />}
+          </button>
+        </div>
+      </aside>
+    </>
   )
 }

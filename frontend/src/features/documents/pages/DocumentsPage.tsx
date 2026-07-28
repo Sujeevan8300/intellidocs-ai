@@ -15,7 +15,6 @@ import { DocumentPreview } from '../components/DocumentPreview/DocumentPreview'
 import { DeleteDialog } from '../components/DeleteDialog/DeleteDialog'
 import { BulkActions } from '../components/BulkActions/BulkActions'
 import { PageSkeleton } from '../components/LoadingSkeleton/LoadingSkeleton'
-import { StatisticsCards } from '../components/StatisticsCards/StatisticsCards'
 import { deleteDocument, renameDocument as renameDoc, toggleFavorite } from '../slices/documentSlice'
 import type { Document } from '../types/Document'
 
@@ -117,8 +116,6 @@ export function DocumentsPage() {
           <p className="doc-page-subtitle">Manage company knowledge documents</p>
         </div>
       </div>
-
-      <StatisticsCards />
 
       <BulkActions
         selectedCount={selectedCount}

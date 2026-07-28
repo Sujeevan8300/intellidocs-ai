@@ -13,7 +13,6 @@ import { UserProfileDrawer } from '../components/UserProfileDrawer/UserProfileDr
 import { DeleteUserDialog } from '../components/DeleteUserDialog/DeleteUserDialog'
 import { ResetPasswordDialog } from '../components/ResetPasswordDialog/ResetPasswordDialog'
 import { BulkActions } from '../components/BulkActions/BulkActions'
-import { StatisticsCards } from '../components/StatisticsCards/StatisticsCards'
 import { SearchBar } from '../components/SearchBar/SearchBar'
 import { UserFilters } from '../components/UserFilters/UserFilters'
 import { PageSkeleton } from '../components/LoadingSkeleton/LoadingSkeleton'
@@ -229,8 +228,6 @@ export function UsersPage() {
           </Button>
         </div>
       </div>
-
-      <StatisticsCards />
 
       <div className="usr-toolbar-section">
         <div className="usr-toolbar-row">
