@@ -136,13 +136,398 @@
   line-height: 1.6;
 }
 
+/* SettingsLayout */
+.settingsLayout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 0;
+  min-height: calc(100vh - 160px);
+}
+
+.settingsContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 0 100px 40px;
+}
+
+/* SettingsSidebar */
+.settingsSidebar {
+  border-right: 1px solid #ebeaf0;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  height: fit-content;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 0;
+}
+
+.sidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  color: #6b6880;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  margin: 0 8px;
+  transition: all 0.15s;
+  text-align: left;
+  width: calc(100% - 16px);
+  position: relative;
+}
+
+.sidebarItem:hover {
+  background: #f5f3ff;
+  color: #43415a;
+}
+
+.sidebarItemActive {
+  background: #eef2ff;
+  color: #6366f1;
+  font-weight: 600;
+}
+
+.sidebarItemActive:hover {
+  background: #e0e7ff;
+}
+
+.sidebarItemIcon {
+  font-size: 16px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sidebarDirtyDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* SettingsHeader */
+.settingsSectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 4px;
+}
+
+.settingsSectionTitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  color: #222137;
+  margin: 0;
+}
+
+.settingsSectionDesc {
+  color: #8b899c;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* SaveBar */
+.saveBar {
+  position: fixed;
+  bottom: 0;
+  left: 260px;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #ebeaf0;
+  padding: 12px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.saveBarText {
+  font-size: 13px;
+  color: #43415a;
+  font-weight: 500;
+}
+
+.saveBarActions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ConfirmDialog */
+.confirmDialogContent {
+  text-align: center;
+  padding: 8px 0;
+}
+
+.confirmDialogIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #f59e0b;
+}
+
+.confirmDialogTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222137;
+  margin: 0 0 8px;
+}
+
+.confirmDialogDesc {
+  font-size: 13px;
+  color: #6b6880;
+  margin: 0;
+}
+
+/* EmptyState */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 64px 24px;
+}
+
+.emptyStateIcon {
+  font-size: 48px;
+  color: #d4d2e3;
+  margin-bottom: 16px;
+}
+
+.emptyStateTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222137;
+  margin: 0 0 8px;
+}
+
+.emptyStateDesc {
+  font-size: 13px;
+  color: #8b899c;
+  margin: 0;
+  max-width: 360px;
+}
+
+/* LoadingSkeleton */
+.loadingSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+}
+
+/* Field helper text */
+.fieldHelper {
+  font-size: 12px;
+  color: #8b899c;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* Preview panel */
+.previewPanel {
+  border: 1px solid #ebeaf0;
+  border-radius: 12px;
+  padding: 24px;
+  background: #fafafe;
+}
+
+.previewPanelTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #43415a;
+  margin: 0 0 12px;
+}
+
+/* System info grid */
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.infoLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8b899c;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.infoValue {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222137;
+}
+
+/* Storage progress */
+.storageProgress {
+  margin-top: 16px;
+}
+
+.storageProgressLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #6b6880;
+}
+
+/* Two-column form grid */
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* Notification groups */
+.notificationGroup {
+  padding: 16px 0;
+  border-bottom: 1px solid #f0eff4;
+}
+
+.notificationGroup:last-child {
+  border-bottom: none;
+}
+
+.notificationGroupTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222137;
+  margin: 0 0 12px;
+}
+
+.notificationRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.notificationRowLabel {
+  font-size: 13px;
+  color: #43415a;
+}
+
+/* Image upload area */
+.uploadArea {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px;
+  border: 2px dashed #d9d7e8;
+  border-radius: 10px;
+  background: #fafafe;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.uploadArea:hover {
+  border-color: #6366f1;
+}
+
+.uploadPreview {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6366f1;
+  font-size: 24px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.uploadPreview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.uploadText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.uploadTextTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #222137;
+  margin: 0;
+}
+
+.uploadTextDesc {
+  font-size: 12px;
+  color: #8b899c;
+  margin: 0;
+}
+
 @media (max-width: 768px) {
+  .settingsLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .settingsSidebar {
+    border-right: none;
+    border-bottom: 1px solid #ebeaf0;
+    position: static;
+    max-height: none;
+  }
+
+  .settingsContent {
+    padding: 0 0 100px 0;
+  }
+
+  .saveBar {
+    left: 0;
+    padding: 12px 16px;
+  }
+
   .pageHeader {
     flex-direction: column;
     align-items: flex-start;
   }
 
   .helpGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .infoGrid {
     grid-template-columns: 1fr;
   }
 }

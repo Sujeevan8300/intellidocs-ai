@@ -8,6 +8,7 @@ import userReducer from '../features/users/slices/userSlice'
 import analyticsReducer from '../features/analytics/slices/analyticsSlice'
 import dashboardReducer from '../features/dashboard/slices/dashboardSlice'
 import profileReducer from '../features/profile-menu/slices/profileSlice'
+import settingsReducer from '../features/settings/slices/settingsSlice'
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     analytics: analyticsReducer,
     dashboard: dashboardReducer,
     profile: profileReducer,
+    settings: settingsReducer,
   },
 })
 export type RootState = ReturnType<typeof store.getState>
