@@ -6,22 +6,23 @@ export interface SidebarItem {
   key: SettingsSectionWithSystem
   label: string
   icon: string
+  group: string
 }
 
 export const SIDEBAR_ITEMS: SidebarItem[] = [
-  { key: 'general', label: 'General', icon: 'SettingOutlined' },
-  { key: 'ai', label: 'AI', icon: 'RobotOutlined' },
-  { key: 'documents', label: 'Documents', icon: 'FileTextOutlined' },
-  { key: 'search', label: 'Semantic Search', icon: 'SearchOutlined' },
-  { key: 'storage', label: 'Storage', icon: 'CloudOutlined' },
-  { key: 'security', label: 'Security', icon: 'SafetyOutlined' },
-  { key: 'authentication', label: 'Authentication', icon: 'LockOutlined' },
-  { key: 'notifications', label: 'Notifications', icon: 'BellOutlined' },
-  { key: 'appearance', label: 'Appearance', icon: 'BgColorsOutlined' },
-  { key: 'branding', label: 'Branding', icon: 'PictureOutlined' },
-  { key: 'email', label: 'Email', icon: 'MailOutlined' },
-  { key: 'audit', label: 'Audit', icon: 'AuditOutlined' },
-  { key: 'system', label: 'System Information', icon: 'InfoCircleOutlined' },
+  { key: 'general', label: 'General', icon: 'SettingOutlined', group: 'Core' },
+  { key: 'ai', label: 'AI', icon: 'RobotOutlined', group: 'Core' },
+  { key: 'documents', label: 'Documents', icon: 'FileTextOutlined', group: 'Core' },
+  { key: 'search', label: 'Semantic Search', icon: 'SearchOutlined', group: 'Core' },
+  { key: 'storage', label: 'Storage', icon: 'CloudOutlined', group: 'Core' },
+  { key: 'security', label: 'Security', icon: 'SafetyOutlined', group: 'Access & Security' },
+  { key: 'authentication', label: 'Authentication', icon: 'LockOutlined', group: 'Access & Security' },
+  { key: 'notifications', label: 'Notifications', icon: 'BellOutlined', group: 'Access & Security' },
+  { key: 'appearance', label: 'Appearance', icon: 'BgColorsOutlined', group: 'Customization' },
+  { key: 'branding', label: 'Branding', icon: 'PictureOutlined', group: 'Customization' },
+  { key: 'email', label: 'Email', icon: 'MailOutlined', group: 'Customization' },
+  { key: 'audit', label: 'Audit', icon: 'AuditOutlined', group: 'System' },
+  { key: 'system', label: 'System Information', icon: 'InfoCircleOutlined', group: 'System' },
 ]
 
 export const TIMEZONE_OPTIONS = [
