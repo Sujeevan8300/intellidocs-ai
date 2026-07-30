@@ -24,9 +24,11 @@ import { BrandingSettings } from '../components/BrandingSettings/BrandingSetting
 import { EmailSettings } from '../components/EmailSettings/EmailSettings'
 import { AuditSettings } from '../components/AuditSettings/AuditSettings'
 import { SystemInformation } from '../components/SystemInformation/SystemInformation'
+import { RolesPage } from '../../../features/roles/pages/RolesPage'
+import { PrivilegesPage } from '../../../features/privileges/pages/PrivilegesPage'
 import styles from '../styles/settings.module.css'
 
-const SECTION_TITLES: Record<SettingsSectionWithSystem, string> = {
+const SECTION_TITLES: Record<string, string> = {
   general: 'General Settings',
   ai: 'AI Settings',
   documents: 'Document Processing',
@@ -35,6 +37,8 @@ const SECTION_TITLES: Record<SettingsSectionWithSystem, string> = {
   security: 'Security Settings',
   authentication: 'Authentication Settings',
   notifications: 'Notification Settings',
+  roles: 'Role Management',
+  privileges: 'Privilege Management',
   appearance: 'Appearance Settings',
   branding: 'Branding Settings',
   email: 'Email Settings',
@@ -42,7 +46,7 @@ const SECTION_TITLES: Record<SettingsSectionWithSystem, string> = {
   system: 'System Information',
 }
 
-const isEditableSection = (s: SettingsSectionWithSystem): s is SettingsSection => s !== 'system'
+const isStandaloneSection = (s: string) => s === 'roles' || s === 'privileges'
 
 export function SettingsPage() {
   const dispatch = useDispatch<AppDispatch>()
@@ -52,28 +56,34 @@ export function SettingsPage() {
   const [pendingSection, setPendingSection] = useState<SettingsSectionWithSystem | null>(null)
 
   const isSystem = activeSection === 'system'
-  const currentData = isSystem ? undefined : sections[activeSection as keyof typeof sections]
-  const { form } = useSettingsForm(isSystem ? 'general' : activeSection, currentData!)
+  const isStandalone = isStandaloneSection(activeSection)
+
+  const currentData = isSystem || isStandalone ? undefined : sections[activeSection as keyof typeof sections]
+  const { form } = useSettingsForm((isSystem || isStandalone ? 'general' : activeSection) as SettingsSection, currentData!)
 
   const dirtySections = useMemo(() => {
     const set = new Set<string>()
-    if (dirty) set.add(activeSection)
+    if (dirty && !isStandalone) set.add(activeSection)
     return set
-  }, [dirty, activeSection])
+  }, [dirty, activeSection, isStandalone])
 
   const handleSectionChange = useCallback((section: string) => {
+    if (isStandaloneSection(section)) {
+      dispatch(setActiveSection(section))
+      return
+    }
     const next = section as SettingsSectionWithSystem
     if (dirty) {
       setPendingSection(next)
       setDiscardOpen(true)
       return
     }
-    dispatch(setActiveSection(next as SettingsSection))
+    dispatch(setActiveSection(next))
   }, [dirty, dispatch])
 
   const handleDiscardConfirm = useCallback(() => {
     dispatch(clearDirty())
-    if (pendingSection && isEditableSection(pendingSection)) {
+    if (pendingSection) {
       dispatch(setActiveSection(pendingSection))
     }
     setPendingSection(null)
@@ -89,15 +99,18 @@ export function SettingsPage() {
   const formAny = form as any
 
   const handleSave = useCallback(async () => {
-    if (isSystem) return
+    if (isSystem || isStandalone) return
     const valid = await formAny.trigger()
     if (!valid) return
     const formData = formAny.getValues()
     await save(activeSection as SettingsSection, formData)
-  }, [formAny, save, activeSection, isSystem])
+  }, [formAny, save, activeSection, isSystem, isStandalone])
 
   const renderSection = () => {
     if (isSystem) return <SystemInformation systemInfo={systemInfo} />
+
+    if (activeSection === 'roles') return <RolesPage />
+    if (activeSection === 'privileges') return <PrivilegesPage />
 
     const commonProps = { form: form as never }
 
@@ -140,7 +153,7 @@ export function SettingsPage() {
         {renderSection()}
       </SettingsLayout>
 
-      {!isSystem && <SaveBar visible={dirty} saving={saving} onSave={handleSave} onDiscard={() => setDiscardOpen(true)} />}
+      {!isSystem && <SaveBar visible={dirty && !isStandalone} saving={saving} onSave={handleSave} onDiscard={() => setDiscardOpen(true)} />}
 
       <ConfirmDialog
         open={discardOpen}

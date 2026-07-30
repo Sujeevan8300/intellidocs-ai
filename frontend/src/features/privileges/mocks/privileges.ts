@@ -1,0 +1,41 @@
+import type { Privilege } from '../types/Privilege'
+
+export const PRIVILEGE_MODULES = [
+  'Documents', 'Categories', 'Users', 'AI Assistant',
+  'Semantic Search', 'Analytics', 'Settings', 'Roles', 'Privileges',
+]
+
+export const MOCK_PRIVILEGES: Privilege[] = [
+  { id: 1, name: 'DOCUMENT_VIEW', module: 'Documents', action: 'View', description: 'View documents in the system', status: 'ACTIVE' },
+  { id: 2, name: 'DOCUMENT_CREATE', module: 'Documents', action: 'Create', description: 'Create new documents', status: 'ACTIVE' },
+  { id: 3, name: 'DOCUMENT_UPDATE', module: 'Documents', action: 'Update', description: 'Edit existing documents', status: 'ACTIVE' },
+  { id: 4, name: 'DOCUMENT_DELETE', module: 'Documents', action: 'Delete', description: 'Delete documents', status: 'ACTIVE' },
+  { id: 5, name: 'DOCUMENT_DOWNLOAD', module: 'Documents', action: 'Download', description: 'Download document files', status: 'ACTIVE' },
+  { id: 6, name: 'CATEGORY_VIEW', module: 'Categories', action: 'View', description: 'View document categories', status: 'ACTIVE' },
+  { id: 7, name: 'CATEGORY_CREATE', module: 'Categories', action: 'Create', description: 'Create new categories', status: 'ACTIVE' },
+  { id: 8, name: 'CATEGORY_UPDATE', module: 'Categories', action: 'Update', description: 'Edit categories', status: 'ACTIVE' },
+  { id: 9, name: 'CATEGORY_DELETE', module: 'Categories', action: 'Delete', description: 'Delete categories', status: 'ACTIVE' },
+  { id: 10, name: 'USER_VIEW', module: 'Users', action: 'View', description: 'View user profiles', status: 'ACTIVE' },
+  { id: 11, name: 'USER_CREATE', module: 'Users', action: 'Create', description: 'Create new users', status: 'ACTIVE' },
+  { id: 12, name: 'USER_UPDATE', module: 'Users', action: 'Update', description: 'Edit user profiles', status: 'ACTIVE' },
+  { id: 13, name: 'USER_DELETE', module: 'Users', action: 'Delete', description: 'Delete users', status: 'INACTIVE' },
+  { id: 14, name: 'USER_ASSIGN_ROLE', module: 'Users', action: 'Assign Role', description: 'Assign roles to users', status: 'ACTIVE' },
+  { id: 15, name: 'AI_CHAT_ACCESS', module: 'AI Assistant', action: 'Access', description: 'Access the AI chat feature', status: 'ACTIVE' },
+  { id: 16, name: 'AI_HISTORY_VIEW', module: 'AI Assistant', action: 'View History', description: 'View chat conversation history', status: 'ACTIVE' },
+  { id: 17, name: 'AI_EXPORT', module: 'AI Assistant', action: 'Export', description: 'Export chat conversations', status: 'INACTIVE' },
+  { id: 18, name: 'SEARCH_ACCESS', module: 'Semantic Search', action: 'Access', description: 'Use semantic search', status: 'ACTIVE' },
+  { id: 19, name: 'SEARCH_ADVANCED', module: 'Semantic Search', action: 'Advanced', description: 'Use advanced search filters', status: 'ACTIVE' },
+  { id: 20, name: 'SEARCH_EXPORT', module: 'Semantic Search', action: 'Export', description: 'Export search results', status: 'INACTIVE' },
+  { id: 21, name: 'ANALYTICS_VIEW', module: 'Analytics', action: 'View', description: 'View analytics dashboards', status: 'ACTIVE' },
+  { id: 22, name: 'ANALYTICS_EXPORT', module: 'Analytics', action: 'Export', description: 'Export analytics data', status: 'INACTIVE' },
+  { id: 23, name: 'SETTINGS_VIEW', module: 'Settings', action: 'View', description: 'View application settings', status: 'ACTIVE' },
+  { id: 24, name: 'SETTINGS_UPDATE', module: 'Settings', action: 'Update', description: 'Modify application settings', status: 'ACTIVE' },
+  { id: 25, name: 'ROLE_VIEW', module: 'Roles', action: 'View', description: 'View roles', status: 'ACTIVE' },
+  { id: 26, name: 'ROLE_CREATE', module: 'Roles', action: 'Create', description: 'Create new roles', status: 'ACTIVE' },
+  { id: 27, name: 'ROLE_UPDATE', module: 'Roles', action: 'Update', description: 'Edit roles', status: 'ACTIVE' },
+  { id: 28, name: 'ROLE_DELETE', module: 'Roles', action: 'Delete', description: 'Delete roles', status: 'ACTIVE' },
+  { id: 29, name: 'PRIVILEGE_VIEW', module: 'Privileges', action: 'View', description: 'View privileges', status: 'ACTIVE' },
+  { id: 30, name: 'PRIVILEGE_CREATE', module: 'Privileges', action: 'Create', description: 'Create new privileges', status: 'ACTIVE' },
+  { id: 31, name: 'PRIVILEGE_UPDATE', module: 'Privileges', action: 'Update', description: 'Edit privileges', status: 'ACTIVE' },
+  { id: 32, name: 'PRIVILEGE_DELETE', module: 'Privileges', action: 'Delete', description: 'Delete privileges', status: 'ACTIVE' },
+]

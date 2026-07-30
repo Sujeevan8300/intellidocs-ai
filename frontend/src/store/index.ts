@@ -9,6 +9,8 @@ import analyticsReducer from '../features/analytics/slices/analyticsSlice'
 import dashboardReducer from '../features/dashboard/slices/dashboardSlice'
 import profileReducer from '../features/profile-menu/slices/profileSlice'
 import settingsReducer from '../features/settings/slices/settingsSlice'
+import roleReducer from '../features/roles/slices/roleSlice'
+import privilegeReducer from '../features/privileges/slices/privilegeSlice'
 
 export const store = configureStore({
   reducer: {
@@ -22,6 +24,8 @@ export const store = configureStore({
     dashboard: dashboardReducer,
     profile: profileReducer,
     settings: settingsReducer,
+    roles: roleReducer,
+    privileges: privilegeReducer,
   },
 })
 export type RootState = ReturnType<typeof store.getState>

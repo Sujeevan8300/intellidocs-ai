@@ -3,7 +3,7 @@ import type { SettingsSection } from '../types/SettingsState'
 export type SettingsSectionWithSystem = SettingsSection | 'system'
 
 export interface SidebarItem {
-  key: SettingsSectionWithSystem
+  key: string
   label: string
   icon: string
   group: string
@@ -18,6 +18,8 @@ export const SIDEBAR_ITEMS: SidebarItem[] = [
   { key: 'security', label: 'Security', icon: 'SafetyOutlined', group: 'Access & Security' },
   { key: 'authentication', label: 'Authentication', icon: 'LockOutlined', group: 'Access & Security' },
   { key: 'notifications', label: 'Notifications', icon: 'BellOutlined', group: 'Access & Security' },
+  { key: 'roles', label: 'Roles', icon: 'SafetyCertificateOutlined', group: 'Access & Security' },
+  { key: 'privileges', label: 'Privileges', icon: 'KeyOutlined', group: 'Access & Security' },
   { key: 'appearance', label: 'Appearance', icon: 'BgColorsOutlined', group: 'Customization' },
   { key: 'branding', label: 'Branding', icon: 'PictureOutlined', group: 'Customization' },
   { key: 'email', label: 'Email', icon: 'MailOutlined', group: 'Customization' },
@@ -116,7 +118,7 @@ export const TABLE_DENSITY_OPTIONS = [
   { value: 'comfortable', label: 'Comfortable' },
 ]
 
-export const SECTION_DESCRIPTIONS: Record<SettingsSectionWithSystem, string> = {
+export const SECTION_DESCRIPTIONS: Record<string, string> = {
   general: 'Configure organization-wide application settings',
   ai: 'Manage AI model configuration and parameters',
   documents: 'Set document processing and upload policies',
@@ -125,6 +127,8 @@ export const SECTION_DESCRIPTIONS: Record<SettingsSectionWithSystem, string> = {
   security: 'Configure password policies and access controls',
   authentication: 'Manage JWT tokens and session settings',
   notifications: 'Configure notification delivery preferences',
+  roles: 'Define user roles and assign permissions',
+  privileges: 'Manage granular application permissions',
   appearance: 'Customize the application look and feel',
   branding: 'Set organization branding and logos',
   email: 'Configure SMTP email delivery settings',

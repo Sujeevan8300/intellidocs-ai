@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit'
-import type { SettingsState, SettingsSection, SettingsSectionWithSystem, AllSettings } from '../types/SettingsState'
+import type { SettingsState, SettingsSection, AllSettings } from '../types/SettingsState'
 import { settingsService } from '../api'
 
 const initialState: SettingsState = {
@@ -81,8 +81,8 @@ const settingsSlice = createSlice({
   name: 'settings',
   initialState,
   reducers: {
-    setActiveSection(state, action: PayloadAction<SettingsSectionWithSystem>) {
-      state.activeSection = action.payload as SettingsSection
+    setActiveSection(state, action: PayloadAction<string>) {
+      state.activeSection = action.payload
     },
     updateSectionField(state, action: PayloadAction<{ section: SettingsSection; key: string; value: unknown }>) {
       const { section, key, value } = action.payload

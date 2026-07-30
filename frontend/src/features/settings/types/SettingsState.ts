@@ -49,7 +49,7 @@ export interface SettingsState {
   loading: boolean
   saving: boolean
   dirty: boolean
-  activeSection: SettingsSectionWithSystem
+  activeSection: string
   error: string | null
 }
 

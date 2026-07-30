@@ -3,7 +3,7 @@ import {
   SettingOutlined, RobotOutlined, FileTextOutlined, SearchOutlined,
   CloudOutlined, SafetyOutlined, LockOutlined, BellOutlined,
   BgColorsOutlined, PictureOutlined, MailOutlined, AuditOutlined,
-  InfoCircleOutlined,
+  InfoCircleOutlined, SafetyCertificateOutlined, KeyOutlined,
 } from '@ant-design/icons'
 import { SIDEBAR_ITEMS } from '../../constants/settings.constants'
 import styles from '../../styles/settings.module.css'
@@ -22,6 +22,8 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   MailOutlined: <MailOutlined />,
   AuditOutlined: <AuditOutlined />,
   InfoCircleOutlined: <InfoCircleOutlined />,
+  SafetyCertificateOutlined: <SafetyCertificateOutlined />,
+  KeyOutlined: <KeyOutlined />,
 }
 
 interface SettingsSidebarProps {
