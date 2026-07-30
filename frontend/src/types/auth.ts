@@ -8,3 +8,19 @@ export interface CurrentUser {
   initials: string
   permissions: string[]
 }
+
+export interface LoginRequest {
+  email: string
+  password: string
+}
+
+export interface RegisterRequest {
+  name: string
+  email: string
+  password: string
+}
+
+export interface AuthResponse {
+  user: CurrentUser
+  token: string
+}
